@@ -1,17 +1,41 @@
 <div class="App">
-  <div class="chat_conversation">
-    <div *ngFor="let item of chatConversation">
-      <p class="card-text padding" [ngClass]="item.cssClass">
-          {{item.person}} :  {{getText(item.response)}}                                                                                                            
-      </p>
-      
+  <div class="container">
+    <br/>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <h4 class="card-header center text-primary">Chào mừng tới TonyGPT - Chatbot Việt không dành cho người Việt... thì còn dành cho ai?</h4>
+          <div class="card-body">
+            <h6 class="card-title text-success center">Bạn đang chat với TonyGPT</h6>
+            <div class="row">
+              <div class="col-md-2"></div>
+              <div class="col-md-8">
+                <div class="chat_conversation">
+                  <div *ngFor="let item of messageList" class="message-container" [ngClass]="item.cssClass">
+                    <img class="avatar" src="../assets/bot_avatar.png" *ngIf="item.bot_response"/>
+                    <div class="card" [ngClass]="item.cssClass">
+                      <p>{{item.content}}</p>
+                    </div>
+                  </div> 
+                  <div class="message-container bot" *ngIf="showTyping">
+                    <img class="avatar" src="../assets/bot_avatar.png" />
+                    <div class="card bot">
+                      <img src="../assets/typing-loading.gif" width="50px" height="22px">
+                    </div>
+                    
+                  </div>
+                </div>
+                <br/>
+                <div class="chat_input">
+                    <textarea id="user_input_text" [(ngModel)]="promptText" placeholder="Start by asking what you are looking for" class="form-control user-input"></textarea>
+                    <button (click)="sendMessage()" class="btn btn-primary submit-btn">Submit</button>
+                </div>
+              </div>
+              <div class="col-md-2"></div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div><img src="../../assets/ZNeT.gif" *ngIf="showSpinner" width="50px" height="50px"></div>
-  
-  </div>
-
-  <div class="chat_input">
-      <textarea [(ngModel)]="promptText" placeholder="Start by asking what you are looking for"></textarea>
-      <button (click)="sendMessage()">Submit</button>
   </div>
 </div>
