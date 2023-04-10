@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Configuration, OpenAIApi, CreateCompletionRequest, CreateChatCompletionRequest, ChatCompletionRequestMessage, ChatCompletionRequestMessageRoleEnum } from 'openai';
 import { config } from 'dotenv';
 import { message } from './ultility';
-import { GPT_response_format } from './ultility';
+import { OPEN_AI_KEY } from './ultility';
 
 @Component({
   selector: 'app-root',
@@ -47,8 +47,7 @@ export class AppComponent {
 
       this.pushChat(this.promptText, false, 'user');
       let configuration = new Configuration({
-        //apiKey: process.env['OPENAI_API_KEY'],
-        apiKey: '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'
+        apiKey: OPEN_AI_KEY
       });
       let openai = new OpenAIApi(configuration);
       
